@@ -1,0 +1,68 @@
+.profileContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.usernameDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4.4rem;
+}
+
+.ChangeName{
+    margin-top: 1.4rem;
+    border-radius: 1.8rem;
+    font: 700 2.0rem Archivo;
+    width: 25rem;
+    height: 6.4rem;
+
+    text-decoration: none;
+    color: whitesmoke;
+    border: none;
+    background-color: #423f3f;
+}
+
+.LogOutButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 4.4rem;
+    border-radius: 1.8rem;
+    font: 700 2.0rem Archivo;
+    width: 25rem;
+    height: 6.4rem;
+    cursor: pointer;
+
+    text-decoration: none;
+    color: #423f3f;
+    border: none;
+    background-color: transparent;
+}
+
+.Icon{
+    width: 3.4rem;
+}
+
+.DeleteAccount{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 2.4rem;
+    border-radius: 1.8rem;
+    font: 700 2.0rem Archivo;
+    width: 25rem;
+    height: 6.4rem;
+    cursor: pointer;
+
+    text-decoration: none;
+    color: indianred;
+    border: none;
+    background-color: transparent;
+}
+
+
+
