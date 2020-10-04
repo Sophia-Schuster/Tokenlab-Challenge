@@ -15,7 +15,7 @@ function App() {
       firebase.isInitialized().then(val => {
         setFirebaseInitialized(val)
       })
-    })
+    }, [])
 
   return firebaseInitialized !== false ? (
     <Landing/> 
