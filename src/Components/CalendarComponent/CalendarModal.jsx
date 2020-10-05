@@ -17,11 +17,13 @@ import {addMonths,
 import backIcon from '../../assets/images/icons/backArrowWhite.svg';
 // icones
 
-import EventModal from '../../Components/EventComponent/EventModal.jsx'
+import EventModal from '../../Components/EventComponent/EventModal.jsx';
+import EditEventModal from '../../Components/EditEventComponent/EditEventModal.jsx';
 // componente
 
 import './CalendarStyle.css';
 import '../SmallModal.css';
+import { id } from 'date-fns/locale';
 //css
 
 function CalendarModal ({setIsCalendarVisible}){
@@ -31,7 +33,22 @@ function CalendarModal ({setIsCalendarVisible}){
     const [selectedDate, setSelectedDate] = useState(new Date())
 
     const [isEventModalVisible, setIsEventModalVisible] = useState(false);
+    const [isEditEventVisible, setIsEditEventVisible] = useState(false);
     // const [isClickForEvent, setIsClickForEvent] = useState(new Date())
+
+    const [eventList,setEventList] = useState([]);
+
+
+    async function getData(){
+      // infoEvent guarda toda minha informacao vinda do firebase
+      const infoEvent = await firebase.getEventInformation();
+      // async só termina quando o await pegar as informacoes
+      setEventList(infoEvent);
+   };
+        //pega informacao assim que a pagina carregar
+      useEffect(()=>{
+         getData();
+     }, []);
 
     // Both of these next functions will use the hook setCurrentDate, wich will use dateFns 
     // dependency to add (next) /subtract (prev) a month from the original value
@@ -109,20 +126,58 @@ function CalendarModal ({setIsCalendarVisible}){
             let formattedDate = "";
             while (day <= endDate) {
                for (let i = 0; i < 7; i++) {
+
+                  //testa se o dia tem evento:
+                  let bool= false
+                  let eventDesc=[];
+                  eventList.forEach(event => {
+                     let date = new Date(event.startYear,event.startMonth,event.startDay,0,0);
+                     if (isSameDay(day,date)) {
+                        bool=true; 
+                        eventDesc.push(event.description);
+                        // console.log(event.description);
+                     } 
+                   })
+
                formattedDate = format(day, dateFormat);
                const cloneDay = day;
                days.push(
                   <div 
+                  // marca o dia atual:
                    className={`column cell ${!isSameMonth(day, monthStart)
                    ? "disabledDays" : isSameDay(day, selectedDate) 
                    ? "selected" : "" }`} 
+
+                   id={`${bool ? "paintIt": ""}`}
+
+                  //  className={`column cell ${!isSameMonth(day, monthStart)
+                  //    ? "disabledDays" : isSameDay(day, selectedDate) 
+                  //    ? "selected" : "" }`} 
+
+                  //  className={`${CompairEventWithDay(day)
+                  //    ? "paintIt" : "" }`} 
+                  
                    key={day} 
                    onClick={() => onDateClick(toDate(cloneDay))}
-                   >  
+                   > 
+                   {/* coloca o nome do evento no dia: */}
+                   <ul>
+                     {eventDesc.map((eventName) => 
+                           <li>{eventName}</li>
+                      )}
+                   </ul>
+                   
+                  {/* {bool ? <span>{eventDesc}</span> : ""} */}
                    <span className="numbers">{formattedDate}</span>
                     <span className="numbersHover">{formattedDate}</span>
                  </div>
                  );
+                 //tentando marcar os dias com evento
+               //   for (let j =0; eventList[j]!== null; j++) {
+               //      days.push()
+               //      let eventday = transformDate(j);
+               //       id={`${isSameDay(day,eventday) ? "paintIt" : "" }`} 
+               //   }
                day = addDays(day, 1);
               } 
               //For each of the 7 iterations, I push a single date into the days array. 
@@ -144,6 +199,9 @@ function CalendarModal ({setIsCalendarVisible}){
                 <button onClick = {() => setIsCalendarVisible(false)} className = "closeModal">
                     <img src={backIcon} alt="back" className= "backIcon" id="back"/>
                 </button> 
+                <button onClick={()=>setIsEditEventVisible(true)} className="OpenEvents">
+                  Edit events
+                </button>
                 <div className="calendar">
                     <div>{header()}</div>        
                     <div>{daysOfWeek()}</div>        
@@ -151,11 +209,11 @@ function CalendarModal ({setIsCalendarVisible}){
                 </div>
                 <div>
                     {/* selectedDate */}
-                    {isEventModalVisible ? <EventModal day={selectedDate} setIsEventModalVisible={setIsEventModalVisible} /> : null}
+                    {isEditEventVisible ? <EditEventModal getData={getData} eventList = {eventList} setIsEditEventVisible={setIsEditEventVisible} /> : null}
+                    {isEventModalVisible ? <EventModal getData={getData} setEventList = {setEventList} day={selectedDate} setIsEventModalVisible={setIsEventModalVisible} /> : null}
                 </div>
             </div>
         </div>
     )
 }
-
 export default CalendarModal;

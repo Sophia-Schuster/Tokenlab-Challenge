@@ -1,4 +1,6 @@
-.containerModal{
+.eventContainer {
+    border: 1px solid lightgray;
+    border-radius: 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;

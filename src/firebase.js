@@ -2,15 +2,15 @@ import app from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 
-const firebaseConfig = {
-    apiKey: "AIzaSyB7vG4zLvL4ZnMVj5nJmkmuy9YodM-KMyU",
-    authDomain: "tokenlabchallenge.firebaseapp.com",
-    databaseURL: "https://tokenlabchallenge.firebaseio.com",
-    projectId: "tokenlabchallenge",
-    storageBucket: "tokenlabchallenge.appspot.com",
-    messagingSenderId: "214568610743",
-    appId: "1:214568610743:web:d0b2447692756b24a35632",
-    measurementId: "G-2K7RNE344Z"
+var firebaseConfig = {
+    apiKey: "AIzaSyB-6t0yH2fA-lCq_DhO22dCYRURqsf-XY4",
+    authDomain: "bancotokenlab.firebaseapp.com",
+    databaseURL: "https://bancotokenlab.firebaseio.com",
+    projectId: "bancotokenlab",
+    storageBucket: "bancotokenlab.appspot.com",
+    messagingSenderId: "980100931612",
+    appId: "1:980100931612:web:99b7183994af1bbd3abfd9",
+    measurementId: "G-DX0V3NKGSJ"
   };
   // Initialize Firebase
   class Firebase{
@@ -48,12 +48,34 @@ const firebaseConfig = {
           return this.auth.currentUser ? (true): (false); 
       }
       //adiciona no firebase   
-      async sendEventInformation(describe, start, end) {
+      async sendEventInformation(describe,startDate,endMonth,endDay,endYear,startTime,endTime,MonthDays) {
             let userId = this.auth.currentUser.uid;
+
+            // separando string em mes, dia e ano
+            let dateString = startDate.toString().split(" ");
+            // posicao 1 - mes, posicao 2- dia, posicao 3- ano
+            let startMonth = dateString[1];
+            let startDay = dateString[2];
+            let startYear = dateString[3];
+
+            // let MonthNumber = 0;
+            let i = 0;
+            // transforma o nome do mes de inicio em numero.
+            for(i=0; i<=11; i++){
+                if (MonthDays[i] === startMonth) startMonth = i;
+            }
+            startMonth= startMonth.toString();
+
             await this.db.collection('users').doc(userId).collection('events').add({
                 description: describe,
-                startTime: start,
-                endTime: end
+                startMonth: startMonth,
+                startDay:startDay,
+                startYear:startYear,
+                endMonth:endMonth,
+                endDay:endDay,
+                endYear:endYear,
+                startTime: startTime,
+                endTime: endTime
             })
       }
       //pega informacao do firebase
