@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import firebase from '../../firebase';
 
-import logoImg from '../../assets/images/logo.png'; //importacao do logo da tokenlab
+import logoImg from '../../assets/images/logo.png'; //logo da tokenlab
 import landingImg from '../../assets/images/mymarketing.png';
 // imagens
 
@@ -13,71 +13,48 @@ import './landingStyle.css';
 
 import LoginModal from '../../Components/LoginComponent/LogModal.jsx'; 
 import RegisterModal from '../../Components/RegisterComponent/RegModal.jsx'; 
-import GuideModal from '../../Components/GuideComponent/GuideModal.jsx'; 
-import CalendarModal from '../../Components/CalendarComponent/CalendarModal.jsx'
-import ProfileModal from '../../Components/ProfileComponent/ProfileModal.jsx'
+import CalendarModal from '../../Components/CalendarComponent/CalendarPage.jsx'
 // componentes
 
 function Landing() {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    // constante para criacao do modal form de login 
+    // modal form de login 
     const [isModalRegVisible, setIsModalRegVisible] = useState(false);
-    // constante para criacao do modal form de registro
-    const [isModalGuideVisible, setIsModalGuideVisible] = useState(false);
-    //constante para criacao do modal de guia
+    // modal form de registro
     const [isCalendarVisible, setIsCalendarVisible] = useState(false);
-    //constante para criacao do modal do calendario
-    const [isProfileVisible, setIsProfileVisible] = useState(false);
-    //constante para criacao do modal form de perfil
+    //calendario
     return(
         <div id= "page-landing">
             <div id="page-landing-content" className="container">
                 <div className="logo-container">
                     <img src={logoImg} alt="Tokenlablogo"/>
                     <h2>Start using our calendar now and keep all your days on track!</h2>
-                    {/* no react nao posso simplesmente colocar o caminho da imagem aqui, preciso importar ela pro meu index.tsx primeiro. */}
                 </div>
 
                 <img src={landingImg} alt="example of site" className="site-image"/>
 
                         {!firebase.isLogged() &&
                             <div className = "buttons-container">
-                                <button onClick = {() => setIsModalRegVisible(true)} className="registerAndprofile"> 
+                                <button onClick = {() => setIsModalRegVisible(true)} className="register"> 
                                 Register
                                 </button>
                                 
-                                <button onClick = {() => setIsModalVisible(true)} className="loginAndcalendar">
+                                <button onClick = {() => setIsModalVisible(true)} className="login">
                                 Log in
                                 </button>
                             </div>
                         }
-                        {firebase.isLogged() &&
-                            <div className = "buttons-container">
-
-                                <button onClick = {() => setIsCalendarVisible(true)} className="loginAndcalendar">
-                                    Calendar
-                                </button>
-
-                                <button onClick = {() => setIsProfileVisible(true)} className="registerAndprofile"> 
-                                    Profile
-                                </button>
-                            </div>
-                        }
+                        {firebase.isLogged() && <CalendarModal setIsCalendarVisible={setIsCalendarVisible} />}
                         
-                        {/* testar se formulario deve estar visivel ou nao */}
                         {isModalVisible ? <LoginModal setIsModalVisible={setIsModalVisible}/> : null}
 
-                        {isModalRegVisible ? <RegisterModal setIsModalRegVisible={setIsModalRegVisible} setIsModalGuideVisible={setIsModalGuideVisible}/> : null} 
-
-                        {isModalGuideVisible ? <GuideModal setIsModalGuideVisible={setIsModalGuideVisible} /> : null} 
+                        {isModalRegVisible ? <RegisterModal setIsModalRegVisible={setIsModalRegVisible}/> : null} 
 
                         {isCalendarVisible ? <CalendarModal setIsCalendarVisible={setIsCalendarVisible} /> : null} 
 
-                        {isProfileVisible ? <ProfileModal setIsProfileVisible={setIsProfileVisible} /> : null} 
-
-                <a onClick = {() => setIsModalGuideVisible(true)} className= "know-more">
+                <a href="https://www.linkedin.com/in/sophia-schuster-315935184/" className= "know-more">
                     <img src={purpleHeartIcon} alt="Purple heart"/>
-                    Step by Step Guide
+                    Developed by Sophia.S.Schuster
                     {/* fica separado dos outros para facilitar a organizacao do grid */}
                 </a>
             </div>

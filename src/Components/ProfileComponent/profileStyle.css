@@ -2,6 +2,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 80%;
+}
+
+.containerModalProfile {
+    background-color: #fff;
+    position: relative;
+
+    width: 400px;
+    height: 75%;
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+#ProfModal{
+    height: 90%;
 }
 
 .usernameDiv{

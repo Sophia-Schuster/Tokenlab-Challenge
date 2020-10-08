@@ -19,10 +19,8 @@ function ProfileModal ({setIsProfileVisible}){
             displayName: newName,
           }).then(function() {
             window.location.reload()
-            // Update successful.
           }).catch(function(error) {
             alert(error.message)
-            // An error happened.
           });
     }
 
@@ -33,14 +31,13 @@ function ProfileModal ({setIsProfileVisible}){
     function deleteAccount(){
         user.delete().then(function() {
             window.location.reload()
-            // User deleted.
           }).catch(function(error) {
             alert(error.message)
           });
     }
     return(
         <div className = "modal">
-            <div className = "containerModal" id="ProfModal">
+            <div className = "containerModalProfile" id="ProfModal">
                 <button onClick = {() => setIsProfileVisible(false)} className = "closeModal">
                     <img src={backIcon} alt="back" className= "backIcon"/>
                 </button>

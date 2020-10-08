@@ -1,12 +1,24 @@
 /* mobile first */
 /* css do formulario: */
 
+.containerModalReg_Login{
+    background-color: #fff;
+    position: relative;
+
+    width: 400px;
+    height: 75%;
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .enterName{
     margin-top: 4.4rem;
 }
 .enterEmail,
 .enterName {
-    /* centralizando conteudo: */
     display: flex;
     justify-content: center;
 }
@@ -18,10 +30,8 @@
      então este ancestral estabelecerá um bloco de conteúdo para todos os seus 
      descendentes, mesmo que o descendente tenho posicao absoluta. */
 
-     /* espaco entre inputs */
      margin-bottom: 5.0rem;
 
-    /* centralizando e alinhando conteudo: */
     display: flex;
     justify-content: center;
 }

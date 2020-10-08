@@ -5,39 +5,61 @@
     background-color: #423f3f;
     position: relative;
 
-    width: 90%;
-    height: 90%;
-    border-radius: 20px;
+    width: 100%;
+    height: 100%;
 
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
-.OpenEvents{
-    width: 10.4rem;
-    height: 3.4rem;
+.buttonsClass{
+    display: flex;
     position: absolute;
-    top: 0;
-    right: 0;
+    bottom: 0rem;
+    justify-content: space-evenly;
+    color: rebeccapurple
+}
+
+.profile{
+    margin-right: 2rem;
+}
+
+.profile,
+.OpenEvents{
+    width: 18.4rem;
+    height: 6.4rem;
     cursor: pointer;
+    border-radius: 1rem;
+    font-weight: bold;
+    background-color: white;
+    color: rebeccapurple;
+}
+
+.profile:hover,
+.OpenEvents:hover{
+    background: lightgray;
 }
 
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
 .calendar {
     display: block;
-    position: relative;
+    position: absolute;
+    top: 2rem;
     width: 90%;
+    height: 70%;
     background: white;
     border: 1px solid lightgray;
+    color: rebeccapurple;
+    max-height: 460px;
     }
 
 .header {
      text-transform: uppercase;
-     font-weight: 700;
-     font-size: 115%;
-     padding: 2.0rem 0;
+     font-weight: bold;
+     font-size: 3rem;
      text-align: center;
 }
 
@@ -49,12 +71,11 @@
 }
 
 .column {
-    width: calc(100%/7);
-    /* assim tenho as colunas dos 7 dias da semana alinhadas */
-    }
-.column {
     flex-grow: 1;
     max-width: 100%;
+    width: calc(100%/7);
+    flex-basis: calc(100%/7);
+    /* assim tenho as colunas dos 7 dias da semana alinhadas */
     }
 
 
@@ -92,7 +113,6 @@
     cursor: pointer;
     background: white;
     transition: 0.25s ease-out; 
-    /* transicao pro white smoke */
 }
 .cell:hover {
     background:whitesmoke;
@@ -127,17 +147,17 @@ font-weight: 700;
 
 .disabledDays {
     /* dias cinzas do calendario */
-color: lightgray;
-pointer-events: none; 
+    color: lightgray;
+    pointer-events: none; 
 }
 
 #paintIt {
-    background-color: red !important; 
+    background-color: rgb(218, 236, 248); 
 }
 
 .numbersHover {
 font-weight: 700;
-
+position: absolute;
 color: violet;
 opacity: 0;
 font-size: 4.2rem;

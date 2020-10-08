@@ -4,7 +4,6 @@
 .tokenIcon{
     height: 9rem;
     
-    /* centralizando conteudo */
     display: flex;
     margin: auto;
 }
@@ -16,9 +15,6 @@
 
 .enterPassword{
     position: relative;
-    /* se um elemento-ancestral (no caso ancestral do open eye) for posicionado, 
-     então este ancestral estabelecerá um bloco de conteúdo para todos os seus 
-     descendentes, mesmo que o descendente tenho posicao absoluta. */
 }
 .openEye{
     position: absolute; 
@@ -43,7 +39,6 @@
 }
 
 .goToRegister{
-    /* centralizando conteudo: */
     display: flex;
     justify-content: center;
 

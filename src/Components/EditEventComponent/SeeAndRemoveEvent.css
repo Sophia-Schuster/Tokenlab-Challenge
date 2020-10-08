@@ -1,0 +1,42 @@
+.eventContainer {
+    border: 1px solid lightgray;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.spanEvent{
+    color: rgb(125, 73, 177);
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.buttonClass button{
+    padding: 0.5rem;
+    margin: 1rem;
+    border-radius: 1rem;
+    color: white;
+    background-color: rgb(125, 73, 177);
+    font-weight: bold;
+    min-width: 10rem;
+}
+
+.buttonClass {
+    background-color: white;
+    border: none;
+}
+
+.containerModal {
+    width: 80%;
+    height: 95%;
+    overflow: auto;
+}
+
+.eventInfoContainer {
+    margin-top: 15rem;
+}

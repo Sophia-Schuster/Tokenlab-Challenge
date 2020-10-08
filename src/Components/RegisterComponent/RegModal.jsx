@@ -12,7 +12,7 @@ import './RegStyle.css';
 import '../SmallModal.css';
 //css
 
-function RegModal ({setIsModalRegVisible, setIsModalGuideVisible}){
+function RegModal ({setIsModalRegVisible}){
     const[name,setName] = useState('')
     const[email,setEmail] = useState('')
     const[password,setPassword] = useState('')
@@ -29,7 +29,7 @@ function RegModal ({setIsModalRegVisible, setIsModalGuideVisible}){
 
     return(
         <div className = "modal">
-            <div className = "containerModal">
+            <div className = "containerModalReg_Login">
                 <button onClick = {() => setIsModalRegVisible(false)} className = "closeModal">
                     <img src={backIcon} alt="back" className= "backIcon"/>
                 </button>  
@@ -71,8 +71,6 @@ function RegModal ({setIsModalRegVisible, setIsModalGuideVisible}){
                 await firebase.register(name,email,password)
                 setIsModalRegVisible(false)
                 // o modal de registro fecha automaticamente ao completar registro
-                setIsModalGuideVisible(true) 
-                // o guia abre sempre que a pessoa se registrar.
             } catch(error){
                 alert(error.message)
             }

@@ -24,11 +24,10 @@ function Modal({setIsModalVisible}) {
     }
     return(
         <div className = "modal">
-            <div className = "containerModal">
+            <div className = "containerModalReg_Login">
                 <button onClick = {() => setIsModalVisible(false)} className = "closeModal">
                     <img src={backIcon} alt="back" className= "backIcon"/>
                 </button> 
-                {/* self-close element */}
                 <div className = "content"> 
                     <div className = "loginForm">
                         <span className = "helloSpan"> Welcome </span>
@@ -47,9 +46,6 @@ function Modal({setIsModalVisible}) {
                                 Log in
                             </button>
                         </div>
-                        <a href= "" className= "goToRegister">
-                            Don’t have an account?
-                        </a>
                     </div>
                 </div>
             </div>
@@ -58,7 +54,6 @@ function Modal({setIsModalVisible}) {
     async function login(){
         try{
             await firebase.login(email,password)
-            // setIsModalVisible(false)
             window.location.reload()
         } catch(error){
             alert(error.message)
