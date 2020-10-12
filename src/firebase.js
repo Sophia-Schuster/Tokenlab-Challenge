@@ -49,40 +49,33 @@ var firebaseConfig = {
       }
       //Testa se os eventos coincidem:
       async TestOverlap(startMonth,startDay,startYear,endMonth,endDay,endYear,startTime,endTime,eventList){
-
-          console.log(eventList);
-          let same = false;
-          let Day = (parseInt(startDay)+ parseInt(startMonth)+parseInt(startYear))
-          let EndDay =(parseInt(endDay)+ parseInt(endMonth)+parseInt(endYear))
-          //soma os valores para testar se os dias sao iguais, se eles forem iguais a soma sera a mesma
-          let startTimeString = startTime.toString().split(":");
-          let endTimeString = endTime.toString().split(":");
-          startTime=startTimeString[0]+startTimeString[1];
-          endTime=endTimeString[0]+endTimeString[1];
-          //transforma o tempo em "algo comparavel"
+        let startDayString= "";
+        let endDayString = "";
+        if (startMonth<10) startDayString = startYear+"-"+"0"+startMonth+"-"+String(startDay)+"T"+startTime;
+        else startDayString = startYear+"-"+startMonth+"-"+String(startDay)+"T"+startTime;
+        if (endMonth<10) endDayString = endYear+"-"+"0"+endMonth+"-"+String(endDay)+"T"+endTime;
+        else endDayString = endYear+"-"+endMonth+"-"+String(endDay)+"T"+endTime;
+          let startDate=Math.round(new Date(startDayString).getTime())
+          let endDate=Math.round(new Date(endDayString).getTime())
+          console.log(startDate);
+          console.log(endDate);
+          //time stamp
               eventList.forEach( event=>{ 
-                  let DayOld= (parseInt(event.startDay) + parseInt(event.startMonth) + parseInt(event.startYear))
-                  let DayEndOld=(parseInt(event.endDay) + parseInt(event.endMonth) + parseInt(event.endYear))
-                  let startTimeStringOld = event.startTime.toString().split(":");
-                  let endTimeStringOld = event.endTime.toString().split(":");
-                  let startTimeOld=startTimeStringOld[0]+startTimeStringOld[1];
-                  let endTimeOld=endTimeStringOld[0]+endTimeStringOld[1];
+                let same = false;
+                let startDateOldString="";
+                let endDateOldString="";
+                if (event.startMonth<10) startDateOldString = event.startYear+"-"+"0"+event.startMonth+"-"+String(event.startDay)+"T"+event.startTime;
+                else startDateOldString = event.startYear+"-"+event.startMonth+"-"+String(event.startDay)+"T"+event.startTime;
+                if(event.endMonth<10) endDateOldString=event.endYear+"-"+"0"+event.endMonth+"-"+String(event.endDay)+"T"+event.endTime;
+                else endDateOldString = event.endYear+"-"+event.endMonth+"-"+String(event.endDay)+"T"+event.endTime;
+                let startDateOld=Math.round(new Date(startDateOldString).getTime())
+                let endDateOld=Math.round(new Date(endDateOldString).getTime())
+                console.log(startDateOld)
+                console.log(endDateOld)
                   if (!same) {
-                      if ((parseInt(startDay)<=parseInt(event.startDay)) && (parseInt(endDay)>parseInt(event.startDay))) same = true; else if (parseInt(startDay)<parseInt(event.endDay) && (parseInt(startDay)>parseInt(event.startDay))) same = true;
-                      //testa dia
-                      if ((parseInt(startMonth)<=parseInt(event.startMonth)) && (parseInt(endMonth)>parseInt(event.startMonth))) same = true; else if (parseInt(startMonth)<parseInt(event.endMonth) && (parseInt(startMonth)>parseInt(event.startMonth))) same = true;
-                      //testa mes
-                      if ((parseInt(startYear)<=parseInt(event.startYear)) && (parseInt(endYear)>parseInt(event.startYear))) same = true; else if (parseInt(startYear)<parseInt(event.endYear) && (parseInt(startYear)>parseInt(event.startYear))) same = true;
-                      //testa ano
-                      if (DayOld===Day || EndDay===DayEndOld){
-                          if (((parseInt(startTime)<parseInt(startTimeOld)) && (parseInt(endTime)>parseInt(startTimeOld)))|| (parseInt(startTime)<parseInt(endTimeOld) && (parseInt(startTime)>parseInt(startTimeOld)))) same = true; 
-                          //testa hora do dia
-                          if ((parseInt(startTime)===parseInt(startTimeOld))|| (parseInt(startTime)===parseInt(endTimeOld)) || (parseInt(endTime)===parseInt(endTimeOld))) same=true;
-
-                      }
-                      if ( EndDay===DayEndOld && (parseInt(endTime)===parseInt(endTimeOld))) same=true;
-
-                      if (same===true) alert ("your event will coincide with " + event.description + " remove or edit it if you want to")
+                    if ((startDate>endDateOld) || (startDate<startDateOld && endDate < startDateOld))
+                        same=true;
+                      if (same===false) alert ("your event will coincide with " + event.description + " remove or edit it if you want to")
                   }
               })
       }
@@ -154,7 +147,8 @@ var firebaseConfig = {
           let eventListAtt = [];
            let eventList = await this.getEventInformation();
             eventList.forEach( allEvent=>{
-                if (allEvent.id===event.id){
+                if (allEvent.id!==event.id){
+                    //TIVE QUE TROCAR, TINHA COLOCADO === AO INVÉS DE !==
                     eventListAtt.push(allEvent);
                 }
             })

@@ -49,7 +49,7 @@ function UpdateEvent ({event,setIsUpdateEventVisible}){
                 dayLoops.push(i)
             }
             return dayLoops
-    }
+    } //Deveria ter colocado isos no pai, assim ele passaria para os dois outros modais! Mas só pensei nisso depois 
     function LoopYears(){
         let yearLoops = []
         let year_leght= parseInt(startYear)

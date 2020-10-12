@@ -8,5 +8,5 @@ Tokenlab challenge (Calendar)
 - Firebase (banco de dados e autenticacao)
 - date-fns (dependencia para manuseios de datas)
 # Design 
-- Responsivo (tecnica mobile first) 
+- Responsivo (mobile first) 
 

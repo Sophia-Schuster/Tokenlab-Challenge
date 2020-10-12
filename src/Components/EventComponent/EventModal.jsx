@@ -78,6 +78,8 @@ function EventModal ({setIsEventModalVisible,day,eventList, getData}){
                     </div>
                     <div className="actionsContainer">
                         <div className="EndDate">
+                            <span>End:</span>
+                            {/* ADICIONEI DEPOIS! AVISAR! */}
                             <select value= {endMonth} onChange={e => setEndMonth(e.target.value)}>
                                 <option value="" selected="">Month</option>
                                 {MonthDays.map((MonthDay, inx) =>
@@ -99,6 +101,8 @@ function EventModal ({setIsEventModalVisible,day,eventList, getData}){
                             {/* {getDaysInMonth(new Date(endYear, endMonth))< endDay && <span> Invalid Date</span>} */}
                         </div>
                         <div className="inputsEvent">
+                            <span>Start and End Time:</span> 
+                            {/* ADICIONEI DEPOIS! AVISAR */}
                             <input value= {startTime} type="time" onChange={e => setStartTime(e.target.value)}/>
                             <input type="time" value= {endTime} onChange={e => setEndTime(e.target.value)}/>
                             <input type="text" placeholder="Description" value= {describe} onChange={e => setDescribe(e.target.value)}/>

@@ -8,7 +8,7 @@ import Visibility from '../../assets/images/visibility.svg';
 import offVisibility from '../../assets/images/visibility_off.svg';
 // imagens
 
-import './RegStyle.css';
+import './RegisterStyle.css';
 import '../SmallModal.css';
 //css
 

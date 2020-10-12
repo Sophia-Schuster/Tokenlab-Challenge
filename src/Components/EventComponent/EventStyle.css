@@ -34,7 +34,7 @@
 .EndDate select{
     margin: 2rem;
     font-size: 2rem;
-    width: 10rem;
+    width: 6rem;
 }
 
 .inputsEvent input {
@@ -54,4 +54,12 @@
     color: rgb(125, 73, 177);
     font-weight: bold;
     font-size: 3rem;
+}
+
+@media(min-width: 1100px){
+    .EndDate select{
+        margin: 2rem;
+        font-size: 2rem;
+        width: 10rem;
+    }
 }

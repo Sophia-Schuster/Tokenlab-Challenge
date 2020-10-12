@@ -7,7 +7,11 @@
     align-items: center;
     width: 60rem;
     padding: 1rem;
-    margin-bottom: 1rem;
+    margin: 1rem;
+}
+
+.eventInfoContainer{
+    max-height: 95%;
 }
 
 .spanEvent{
@@ -35,8 +39,4 @@
     width: 80%;
     height: 95%;
     overflow: auto;
-}
-
-.eventInfoContainer {
-    margin-top: 15rem;
 }

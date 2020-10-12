@@ -12,7 +12,7 @@ import './landingStyle.css';
 // css
 
 import LoginModal from '../../Components/LoginComponent/LogModal.jsx'; 
-import RegisterModal from '../../Components/RegisterComponent/RegModal.jsx'; 
+import RegisterModal from '../../Components/RegisterComponent/RegisterModal.jsx'; 
 import CalendarModal from '../../Components/CalendarComponent/CalendarPage.jsx'
 // componentes
 
